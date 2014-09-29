@@ -5,8 +5,9 @@ def separate_states(state_list):
     state_list = state_list.strip().strip('{}')
     states = []
     for state in state_list.split(','):
-        states.append(state.strip())
-    
+        if(state != ''):
+            states.append(int(state.strip()))
+
     return states
 
 if __name__ == '__main__':
@@ -14,11 +15,11 @@ if __name__ == '__main__':
     # it's imported from somewhere else.
 
     # interate over the lines from standard in.
-   
+
     initial_state = separate_states(stdin.readline().split(':')[1])[0]
     final_states = separate_states(stdin.readline().split(':')[1])
-    state_count = separate_states(stdin.readline().split(':')[1]) 
-    
+    state_count = separate_states(stdin.readline().split(':')[1])[0] 
+
     # split on whitespace with no arguments to split
     tokens = stdin.readline().strip().split()
     tokens.pop(0)
@@ -27,16 +28,22 @@ if __name__ == '__main__':
     print(final_states)
     print(state_count)
     print(tokens)
-    
+
     states = []
-    states.append({})
-    line = stdin.readline().split('{')
-    line.pop(0)
-    
-    for token in tokens:
-        states[0][token] = separate_states(line[0])
+
+    for i in range(1, int(state_count)+1):
+        states.append({})
+        line = stdin.readline().split('{')
+        
+        # get rid of the state number
         line.pop(0)
-        print(states[0][token])
+        for token in tokens:
+            states[0][token] = separate_states(line[0])
+            line.pop(0)
+            print(states[0][token], end='')
+        
+        print('')
+
 
 #    for line in stdin:
  #       print(line, end='')
