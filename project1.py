@@ -28,8 +28,9 @@ def e_closure(state_list, states):
     e_closure_states = set(state_list)
     for state in state_list:
         # check to see if E exist
-        my_set = set(e_closure(states[state]['E'], states))
-        e_closure_states = e_closure_states | my_set
+        if 'E' in states[state]:
+            my_set = set(e_closure(states[state]['E'], states))
+            e_closure_states = e_closure_states | my_set
 
     return list(e_closure_states)
 
