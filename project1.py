@@ -17,7 +17,7 @@ def separate_states(state_list):
     return states
 
 
-def e_closure(state_list, states):
+def e_closure(state_list, states, visited):
     """
     Summary: Will do the null closure from each state within state_list
     state_list: list of states that is apart of one bigger state in the diagram
@@ -29,8 +29,12 @@ def e_closure(state_list, states):
     for state in state_list:
         # check to see if E exist
         if 'E' in states[state]:
-            my_set = set(e_closure(states[state]['E'], states))
-            e_closure_states = e_closure_states | my_set
+            if state in visited:
+                continue
+            else:
+                visited.append(state)
+                my_set = set(e_closure(states[state]['E'], states, visited))
+                e_closure_states = e_closure_states | my_set
 
     return list(e_closure_states)
 
@@ -144,7 +148,7 @@ def convert_to_dfa(io, states, tokens, final_states):
     dfa_final_states = []
     dfa_initial_state = []
     dfa_states = {}
-    d_states.append(e_closure(io, states))
+    d_states.append(e_closure(io, states, []))
     marked_index = 0
     print('E-closure(I0) = ', end='')
     print_state(d_states[0])
@@ -168,7 +172,7 @@ def convert_to_dfa(io, states, tokens, final_states):
                     print('E-closure', end='')
                     print_state(states_on_token)
                     print(' = ', end='')
-                    u = e_closure(states_on_token, states)
+                    u = e_closure(states_on_token, states, [])
 
                     print_state(u)
                     print(' = ', end='')
