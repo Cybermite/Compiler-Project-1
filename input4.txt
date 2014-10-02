@@ -1,0 +1,10 @@
+Initial State: {1}
+Final States: {4,5,6}
+Total States: 6
+State   a   b   
+1   {2} {3} 
+2   {}  {4} 
+3   {5} {}  
+4   {6} {}  
+5   {6} {}  
+6   {6} {}  
