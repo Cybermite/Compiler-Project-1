@@ -1,0 +1,5 @@
+Steps to run:
+1.) Since this is written in python, there is no need to have a makefile.
+2.) Navigate to the folder with "project1.py"
+3.) Type "python project1.py < filename.txt" to run the program.
+
