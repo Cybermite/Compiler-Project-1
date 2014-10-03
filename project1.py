@@ -1,3 +1,11 @@
+"""
+AUTHOR: Zane Ralston
+CLASS: EECS 665, Compiler Construction
+DUE DATE: October 3, 2014
+SUMMARY: Will take in input of the nfa and convert to dfa by doing the
+        algorithm learned in class.
+"""
+
 from __future__ import print_function
 from sys import stdin
 
