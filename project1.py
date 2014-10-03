@@ -78,6 +78,15 @@ def print_state(state_list):
     state_list: current list of states to print out
     Return: none
     """
+
+    # sort the states within this list
+    temp_list = []
+    for i in range(0, len(state_list)):
+        temp_list.append(int(state_list[i]))
+
+    temp_list.sort()
+    state_list = temp_list
+
     print('{', end='')
     for i in range(0, len(state_list)):
         print('%s' % (state_list[i]), end='')
